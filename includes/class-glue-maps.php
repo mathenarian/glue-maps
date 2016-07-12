@@ -78,6 +78,19 @@ class Glue_Maps {
 
 	}
 
+
+/*Admin hooks to display the settings page in the Dashboard*/
+
+	private function define_admin_hooks() {
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
+
+		// Add Settings link to the plugin
+		$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
+		$this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
+
+
+
+	}
 	/**
 	 * Load the required dependencies for this plugin.
 	 *
@@ -94,6 +107,7 @@ class Glue_Maps {
 	 * @since    1.0.0
 	 * @access   private
 	 */
+
 	private function load_dependencies() {
 
 		/**

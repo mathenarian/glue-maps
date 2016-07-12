@@ -73,7 +73,30 @@ class Glue_Maps_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/glue-maps-admin.css', array(), $this->version, 'all' );
+	public function add_plugin_admin_menu() {
+
+    	add_options_page( 'Glue Maps and Base Options Functions Setup', 
+		'Glue Maps', 'manage_options', $this->plugin_name, array($this, 
+		'display_plugin_setup_page')
+	}
+
+	public function add_action_links( $links ) {
+
+	$settings_link = array(
+	 '<a href="' . admin_url('options-general.php?page=' . #this->plugin_name ) . '">' . __('Settings', $this->plugin_name) . '</a>',
+	);
+	return array_merge( $settings_link, $links);
+
+
+	}
+
+	public function display_plugin_setup_page() {
+		include_once('partials/wp-glue-maps-admin-display.php');
+
+	}
+
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 
+		'css/glue-maps-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -87,7 +110,7 @@ class Glue_Maps_Admin {
 		/**
 		 * This function is provided for demonstration purposes only.
 		 *
-		 * An instance of this class should be passed to the run() function
+	     * An instance of this class should be passed to the run() function
 		 * defined in Glue_Maps_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
@@ -95,6 +118,7 @@ class Glue_Maps_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/glue-maps-admin.js', array( 'jquery' ), $this->version, false );
 
