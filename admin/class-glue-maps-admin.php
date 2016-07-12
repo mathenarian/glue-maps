@@ -62,7 +62,7 @@ class Glue_Maps_Admin {
 
 	public function add_plugin_admin_menu() {
 
-    	add_options_page( 'Glue Maps and Base Options Functions Setup', 'Glue Maps', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page');
+    	add_options_page( 'Glue Maps and Base Options Functions Setup', 'Glue Maps', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page'));
 	}
 
 	public function add_action_links( $links ) {
